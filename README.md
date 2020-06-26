@@ -52,7 +52,7 @@ Los avances registrados en el último año sobre NLP han consistido en aumentar 
 
 ### Análisis de sentimiento:
 Como se menciona anteriormente, el año 2019 fue un año muy fructífero para el análisis de sentimiento, y se generaron multitud de respuestas a este fenómeno donde se combinaban distintas tecnologías siendo incluso uno de los artículos con mayor influencia en Medium (servicio de publicación de blogs profesionales) un artículo de recopilación científica escrito por Lei Zhang, Shuai Wang, Bing Liu denominado Deep Learning for Sentiment Analysis : A Survey, donde se recogen las principales herramientas utilizadas por la comunidad para la solucionar el problema planteado.
-El artículo se resume en la siguiente tabla, donde se muestran las principales tecnologías utilizadas por la comunidad y los principales inconvenientes derivados de ella.
+El artículo https://arxiv.org/ftp/arxiv/papers/1801/1801.07883.pdf resume  las principales tecnologías utilizadas por la comunidad y los principales inconvenientes derivados de ella.
  
 
 
@@ -65,17 +65,29 @@ Así mismo, en python existe una librería llamada Textblob que cumple esta fina
 
 La ejecución de este proyecto está más centrada en la información visual que el análisis del sentimiento pueda proporcionar, es decir, el objetivo es analizar la capacidad de influencia de un agente dentro de su red, comprobar la polarización sentimental de los sujetos.
 
-Por ello se usa como arquitectura una red convolucional (CNN) con un Word embbeding pre-entrenado, enteramente en español, al que se le darán como datos de entrenamiento un conjunto de tweets, previamente etiquetados de forma manual obtenidos de http://tass.sepln.org/2017/#datasets.
+Por ello se usa como arquitectura una red convolucional (CNN) con un Word embbeding pre-entrenado, enteramente en español, al que se le darán como datos de entrenamiento un conjunto de tweets, previamente etiquetados de forma manual obtenidos de http://tass.sepln.org/2017/#datasets. Del cual se seleccionaron solo los tweet etiquetados bajo la temática política y que se pueden encontrar en el archivo Train_tweets.csv disponible en el drive anteriormente mencionado.-
 
-**El flujo de trabajo de la arquitectura del script completo consiste en la entrada de forma manual del id de twitter del sujeto de estudio y una fecha concreta, en formato YY/MM/DD.**
+**El flujo de trabajo de la arquitectura del script completo consiste en:**
 
-Una vez ejecutamos el archivo, se descargaran (en la propia carpeta donde se encuentre el ejecutado), los id de los seguidores y los tweets que haya realizado durante ese día y se creara dos archivo con la información obtenida.
+ 1. La entrada de forma manual del id de twitter del sujeto de estudio y una fecha concreta, en formato YY/MM/DD.**
+ 
+    - Una vez ejecutamos el archivo, se descargaran (en la propia carpeta donde se encuentre el ejecutado), los id de los seguidores y los tweets que haya realizado durante ese día y se creara dos archivo con la información obtenida.
 
-Una vez finalizado este proceso se iniciará el mismo proceso con cada uno de los seguidores del sujeto de estudio.
+     - Una vez finalizado este proceso se iniciará el mismo proceso con cada uno de los seguidores del sujeto de estudio.
 
-Tras obtener los archivos se iniciaran la limpieza y procesado de los tweets para generar las predicciones de los tweets que se guardaran en forma de diccionario en archivos
+      - Tras obtener los archivos se iniciaran la limpieza y procesado de los tweets para generar las predicciones de los tweets que se guardaran en forma de diccionario en archivos
 
-Una vez realizadas las predicciones, se procederá a la lectura de los diccionarios y a la posterior visualización de los mismos, creando un archivo HTML que permite la interacción con los nodos, así como aumentar o disminuir el zoom para su mejorar su análisis.
+       - Una vez realizadas las predicciones, se procederá a la lectura de los diccionarios y a la posterior visualización de los mismos, creando un archivo HTML que permite la interacción con los nodos, así como aumentar o disminuir el zoom para su mejorar su análisis.
+
+**Los colores de los nodos representan las prediciones o la información de la cuenta del usuario de la siguiente forma:**
+
+**Verde**: Muestra el sujeto de estudio, es el nodo central de la construcción de la red, y los ejes que salen de él son los seguidores de este
+
+**Azul**: la media de las predicciones arroja un sentimiento positivo
+
+**Rojo**: la media de las predicciones arroja un sentimiento negativo  
+
+**Amarillo**: la cuenta del este sujeto es privada y por lo tanto no se pueden realizar predicciones sobre el
 
 *La decisión de crear los archivos de esta forma es reducir el coste de la memoria RAM y la recuperación del proceso en caso de fallo del sistema que está ejecutando el proceso debido a la demora provocada por las condiciones de la api*
 
@@ -127,7 +139,7 @@ Pese a los principales problemas anteriormente mencionados, el presente proyecto
 
 Los principales puntos a mejorar son principalmente:
 
--Aumento del accuracy, ya sea mediante el aumento de los datos de entrenamiento o mediante la ejecución de arquitecturas paralelas que triangulen las predicciones.
+-Aumento de la precisión, ya sea mediante el aumento de los datos de entrenamiento o mediante la ejecución de arquitecturas paralelas que triangulen las predicciones.
 
 -Mejora de la interfaz gráfica y el añadido de las principales palabras usadas por la comunidad estudiada
 
